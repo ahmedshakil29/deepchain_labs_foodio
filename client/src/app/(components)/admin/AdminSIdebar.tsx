@@ -24,7 +24,7 @@ export default function AdminSidebar() {
     {
       name: "Orders",
       icon: "📦",
-      path: "/admin/Order",
+      path: "/admin/Orders",
     },
   ];
 

@@ -217,7 +217,7 @@ export default function AddMenuItemModal({
         {/* Form */}
         <div className="space-y-5">
           {/* Name & Price */}
-          <div className="flex gap-4">
+          {/* <div className="flex gap-4">
             <div className="flex-1">
               <label className="block text-sm font-medium text-[#333]">
                 Name
@@ -244,8 +244,35 @@ export default function AddMenuItemModal({
                 <p className="mt-1 text-xs text-red-500">{errors.price}</p>
               )}
             </div>
+          </div> */}
+          <div>
+            <label className="block text-sm font-medium text-[#333] mb-1">
+              Name
+            </label>
+            <Input
+              placeholder="e.g. Cheese Burger"
+              value={formData.name}
+              onChange={(e) => handleInputChange("name", e.target.value)}
+            />
+            {errors.name && (
+              <p className="mt-1 text-xs text-red-500">{errors.name}</p>
+            )}
           </div>
 
+          {/* Price */}
+          <div>
+            <label className="block text-sm font-medium text-[#333] mb-1">
+              Price
+            </label>
+            <Input
+              placeholder="e.g. 299"
+              value={formData.price}
+              onChange={(e) => handleInputChange("price", e.target.value)}
+            />
+            {errors.price && (
+              <p className="mt-1 text-xs text-red-500">{errors.price}</p>
+            )}
+          </div>
           {/* Category */}
           <div>
             <label className="block text-sm font-medium text-[#333]">
