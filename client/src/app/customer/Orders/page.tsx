@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import OrderPlaceCart from "@/app/(components)/orders/OrderPlaceCart";
 import axios from "axios";
-import { getAuthToken } from "@/utils/auth"; // তোমার auth utility file
+import { getAuthToken } from "@/utils/auth";
 
 type Order = {
   orderId: string;
@@ -17,6 +17,18 @@ type Order = {
   deliveryAddress: string;
   totalAmount: number;
   status: "PENDING" | "PREPARING" | "READY" | "COMPLETED";
+};
+type OrderResponse = {
+  id: string;
+  createdAt: string;
+  orderItems?: Array<{
+    quantity: number;
+    price: string;
+    menuItem?: { name: string };
+  }>;
+  totalPrice: string;
+  status: "PENDING" | "PREPARING" | "READY" | "COMPLETED";
+  user?: { address: string };
 };
 
 export default function Orders() {
@@ -43,6 +55,7 @@ export default function Orders() {
         });
 
         // Backend data কে frontend format এ convert
+        // const formattedOrders: Order[] = (response.data as OrderResponse[]).map((order) => { ... });
         const formattedOrders: Order[] = response.data.map((order: any) => {
           // Date formatting
           const orderDate = new Date(order.createdAt);
