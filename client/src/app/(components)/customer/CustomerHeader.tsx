@@ -15,7 +15,7 @@ const CustomerHeader = () => {
   const getActiveTab = () => {
     if (pathname === "/customer") return "home";
     if (pathname === "/customer/FoodMenu") return "food-menu";
-    if (pathname === "/customer/OrderDetails") return "my-orders";
+    if (pathname === "/customer/orders") return "my-orders";
     return undefined; // / path বা অন্য কোনো path এখানে active হবে না
   };
 
@@ -45,7 +45,7 @@ const CustomerHeader = () => {
   };
 
   const handleMyOrdersClick = () => {
-    router.push("/customer/OrderDetails");
+    router.push("/customer/orders");
   };
 
   const handleViewDetails = () => {
@@ -53,15 +53,15 @@ const CustomerHeader = () => {
     router.push("/customer/profile");
   };
 
-  const handleViewOrders = () => {
-    setIsDropdownOpen(false);
-    router.push("/OrderDetails");
-  };
+  // const handleViewOrders = () => {
+  //   setIsDropdownOpen(false);
+  //   router.push("/OrderDetails");
+  // };
 
   const handleSignOut = () => {
     setIsDropdownOpen(false);
     // Add your sign out logic here
-    console.log("Signing out...");
+    // console.log("Signing out...");
 
     router.push("/auth");
   };
@@ -125,14 +125,14 @@ const CustomerHeader = () => {
                 onClick={handleViewDetails}
                 className="w-full px-4 py-3 text-left text-[14px] text-[#1A1A1A] hover:bg-[#F5F5F5] transition-colors"
               >
-                View Details
+                Profile
               </button>
-              <button
+              {/* <button
                 onClick={handleViewOrders}
                 className="w-full px-4 py-3 text-left text-[14px] text-[#1A1A1A] hover:bg-[#F5F5F5] transition-colors"
               >
                 My Orders
-              </button>
+              </button> */}
               <div className="border-t border-[#E5E5E5] my-1" />
               <button
                 onClick={handleSignOut}
