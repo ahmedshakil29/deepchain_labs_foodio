@@ -16,7 +16,7 @@ export class CreateOrderDto {
   @ValidateNested({ each: true })
   @Type(() => CreateOrderItemDto)
   items: CreateOrderItemDto[];
-  userId: number;
+  // userId: number;
 }
 
 export class UpdateOrderStatusDto {

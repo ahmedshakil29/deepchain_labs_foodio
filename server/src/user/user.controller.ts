@@ -40,14 +40,22 @@ export class UserController {
   //   return this.userService.createOrder(userId, data);
   // }
   // user.controller.ts
+  // @Post('placeorder')
+  // @UseGuards(UserGuard)
+  // async placeOrder(
+  //   @Body() data: CreateOrderDto,
+  //   @Req() req: Request & { user: { sub: number } },
+  // ) {
+  //   data.userId = req.user.sub; // inject current user into DTO
+  //   return this.userService.createOrder(data); // only pass one argument
+  // }
   @Post('placeorder')
   @UseGuards(UserGuard)
   async placeOrder(
-    @Body() data: CreateOrderDto,
+    @Body() dto: CreateOrderDto,
     @Req() req: Request & { user: { sub: number } },
   ) {
-    data.userId = req.user.sub; // inject current user into DTO
-    return this.userService.createOrder(data); // only pass one argument
+    return this.userService.createOrder(req.user.sub, dto);
   }
 
   @Get('orders')

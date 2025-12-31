@@ -189,14 +189,59 @@ export class UserService {
   // }
 
   // ------------------- Create Order -------------------
-  async createOrder(dto: CreateOrderDto): Promise<Order> {
-    // Validate user exists
-    const user = await this.prisma.user.findUnique({
-      where: { id: dto.userId },
-    });
-    if (!user) throw new NotFoundException('User not found');
+  // async createOrder(dto: CreateOrderDto): Promise<Order> {
+  //   // Validate user exists
+  //   const user = await this.prisma.user.findUnique({
+  //     where: { id: dto.userId },
+  //   });
+  //   if (!user) throw new NotFoundException('User not found');
 
-    // Calculate total price
+  //   // Calculate total price
+  //   let totalPrice = new Prisma.Decimal(0);
+  //   const orderItemsData: Prisma.OrderItemCreateManyOrderInput[] = [];
+
+  //   for (const item of dto.items) {
+  //     const menuItem = await this.prisma.menuItem.findUnique({
+  //       where: { id: item.menuItemId },
+  //     });
+  //     if (!menuItem)
+  //       throw new NotFoundException(`Menu item ${item.menuItemId} not found`);
+
+  //     totalPrice = totalPrice.add(menuItem.price.mul(item.quantity));
+
+  //     orderItemsData.push({
+  //       menuItemId: menuItem.id,
+  //       quantity: item.quantity,
+  //       priceAtOrder: menuItem.price,
+  //     });
+  //   }
+
+  //   // Create order with items
+  //   const order = await this.prisma.order.create({
+  //     data: {
+  //       userId: dto.userId,
+  //       totalPrice,
+  //       items: {
+  //         create: orderItemsData,
+  //       },
+  //     },
+  //     include: {
+  //       items: { include: { menuItem: true } },
+  //       user: true,
+  //     },
+  //   });
+
+  //   return order;
+  // }
+  async createOrder(userId: number, dto: CreateOrderDto): Promise<Order> {
+    const user = await this.prisma.user.findUnique({
+      where: { id: userId },
+    });
+
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+
     let totalPrice = new Prisma.Decimal(0);
     const orderItemsData: Prisma.OrderItemCreateManyOrderInput[] = [];
 
@@ -204,8 +249,10 @@ export class UserService {
       const menuItem = await this.prisma.menuItem.findUnique({
         where: { id: item.menuItemId },
       });
-      if (!menuItem)
+
+      if (!menuItem) {
         throw new NotFoundException(`Menu item ${item.menuItemId} not found`);
+      }
 
       totalPrice = totalPrice.add(menuItem.price.mul(item.quantity));
 
@@ -216,10 +263,9 @@ export class UserService {
       });
     }
 
-    // Create order with items
-    const order = await this.prisma.order.create({
+    return this.prisma.order.create({
       data: {
-        userId: dto.userId,
+        userId,
         totalPrice,
         items: {
           create: orderItemsData,
@@ -230,10 +276,7 @@ export class UserService {
         user: true,
       },
     });
-
-    return order;
   }
-
   // ------------------- Get All Orders -------------------
   async getOrders(): Promise<Order[]> {
     return this.prisma.order.findMany({
