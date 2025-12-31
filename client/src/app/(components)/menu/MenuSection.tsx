@@ -87,7 +87,7 @@ export default function MenuSection() {
             transition-all
             ${
               activeCategory === "all"
-                ? "bg-[#1A3C34] text-white shadow-lg"
+                ? "bg-[#FBFAF8] text-black shadow-lg"
                 : "bg-[#FEF7EA]"
             }
           `}
@@ -107,7 +107,7 @@ export default function MenuSection() {
                 transition-all
                 ${
                   isActive
-                    ? "bg-[#1A3C34] text-white shadow-lg"
+                    ? "bg-[#FBFAF8] text-black shadow-lg"
                     : "bg-[#FEF7EA]"
                 }
               `}
