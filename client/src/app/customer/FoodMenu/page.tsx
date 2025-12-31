@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import FoodItemCard from "@/app/(components)/FoodItemCard";
-import ShowLoginModal from "@/app/(components)/commons/ShowLoginModal";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import OrderConfirmModal from "@/app/(components)/orders/OrderConfirmModal";
@@ -38,7 +37,6 @@ export default function FoodMenu() {
   const [selectedItem, setSelectedItem] = useState<SelectedMenuItem | null>(
     null
   );
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   const categories: { label: string; value: CategoryType }[] = [
     { label: "All", value: "all" },
@@ -93,7 +91,8 @@ export default function FoodMenu() {
 
     if (!token) {
       // Open login modal if not logged in
-      setIsLoginModalOpen(true);
+      alert("You have to login to place an order");
+      window.location.href = "/auth";
       return;
     }
 
@@ -156,7 +155,7 @@ export default function FoodMenu() {
           },
         ],
       };
-      console.log("Sending to Backend:", payload);
+      //   console.log("Sending to Backend:", payload);
       const response = await axios.post(
         "http://localhost:3001/user/placeorder",
         payload,
