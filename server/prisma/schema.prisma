@@ -5,20 +5,15 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/prisma"
+  provider = "prisma-client-js"
+  // output   = "../generated/prisma"
 }
 
 datasource db {
   provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
-/* ENUMS */
-
-enum Role {
-  USER
-  ADMIN
-}
 
 enum OrderStatus {
   PENDING
@@ -28,31 +23,37 @@ enum OrderStatus {
   CANCELLED
 }
 
-/* MODELS */
+model Role {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
+  description String?
+  users       User[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
 
 model User {
-  id         Int      @id @default(autoincrement())
-  name       String
-  email      String   @unique
-  password   String
-  profileUrl String?
-  role       Role     @default(USER)
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  password  String
+  address   String
+  imageUrl  String?   
+  roleId    Int
+  role      Role     @relation(fields: [roleId], references: [id])
+  orders    Order[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  orders     Order[]
-
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-
-  @@index([role])
+  @@index([roleId])
 }
+
 
 model Category {
   id        Int       @id @default(autoincrement())
   name      String    @unique
   isActive  Boolean   @default(true)
-
   items     MenuItem[]
-
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
 }
@@ -64,12 +65,9 @@ model MenuItem {
   price       Decimal   @db.Decimal(10, 2)
   imageUrl    String?
   isAvailable Boolean   @default(true)
-
   categoryId  Int
   category    Category  @relation(fields: [categoryId], references: [id])
-
   orderItems  OrderItem[]
-
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 
@@ -81,12 +79,9 @@ model Order {
   id         Int         @id @default(autoincrement())
   userId     Int
   user       User        @relation(fields: [userId], references: [id])
-
   status     OrderStatus @default(PENDING)
   totalPrice Decimal     @db.Decimal(10, 2)
-
   items      OrderItem[]
-
   createdAt  DateTime    @default(now())
   updatedAt  DateTime    @updatedAt
 
@@ -98,13 +93,12 @@ model OrderItem {
   id           Int       @id @default(autoincrement())
   orderId      Int
   order        Order     @relation(fields: [orderId], references: [id])
-
   menuItemId   Int
   menuItem     MenuItem  @relation(fields: [menuItemId], references: [id])
-
   priceAtOrder Decimal   @db.Decimal(10, 2)
   quantity     Int
-
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
+
+  @@unique([orderId, menuItemId])
 }
