@@ -25,10 +25,10 @@ type SelectedMenuItem = {
   price: number;
 };
 
-type OrderData = {
-  menuItemId: number;
-  quantity: number;
-};
+// type OrderData = {
+//   menuItemId: number;
+//   quantity: number;
+// };
 
 export default function FoodMenu() {
   const [activeCategory, setActiveCategory] = useState<CategoryType>("all");
