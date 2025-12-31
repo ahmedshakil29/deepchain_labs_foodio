@@ -1,8 +1,13 @@
-export interface User {
+import { Role } from "./admin";
+
+export type User = {
   id: number;
   name: string;
   email: string;
-  role: string; // could be "admin" or "user"
-  address?: string;
-  profileUrl?: string;
-}
+  address: string;
+  imageUrl?: string;
+  roleId: number;
+  role: Role;
+  createdAt: string;
+  updatedAt: string;
+};

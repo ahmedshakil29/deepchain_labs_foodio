@@ -78,7 +78,7 @@ export default function AuthPage() {
       }
 
       if (userRole === "user") {
-        router.push("/customer/Dashboard");
+        router.push("/customer");
       }
     } catch (error: unknown) {
       if (error instanceof z.ZodError) {

@@ -37,6 +37,21 @@ export const logout = () => {
   localStorage.removeItem("user");
 };
 
+// 2nd one
+// import api from "../api";
+// import { setToken } from "@/utils/token";
+
+// export const adminLogin = async (email: string, password: string) => {
+//   const res = await api.post("/admin/login", { email, password });
+
+//   if (res.data?.accessToken) {
+//     setToken(res.data.accessToken);
+//   }
+
+//   return res.data;
+// };
+
+//3rd one
 // import api from "./api";
 // import jwtDecode from "jwt-decode";
 
