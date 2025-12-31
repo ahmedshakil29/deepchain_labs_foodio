@@ -167,12 +167,18 @@ export default function AuthPage() {
       setIsLoading(false);
     }
   };
+  // const handleNavigation = (route: string) => {
+  //   router.push(route);
+  // };
 
   return (
     <div className="min-h-screen bg-[#FFFFFF] flex items-center justify-center p-4">
       <div className="bg-[#F5F5F0] rounded-[24px] p-[48px] w-full max-w-[530px] shadow-lg">
         {/* Logo */}
-        <div className="flex justify-center mb-[16px]">
+        <div
+          className="flex justify-center mb-[16px]"
+          onClick={() => router.push("/")}
+        >
           <Logo />
         </div>
 
