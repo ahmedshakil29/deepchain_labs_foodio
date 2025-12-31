@@ -161,12 +161,7 @@ export default function HomePage() {
         </div> */}
 
         {/* Food Items Grid */}
-        <MenuSection
-          category="all"
-          limit={8}
-          title="Popular Dishes"
-          subtitle="A glimpse of our customer favorites"
-        />
+        <MenuSection />
       </section>
 
       <div className="h-20"></div>
