@@ -6,6 +6,7 @@ import { z } from "zod";
 import axios from "axios";
 import Input from "@/app/(components)/commons/InputTextBox";
 import Button from "@/app/(components)/commons/Button";
+import Image from "next/image";
 
 // Zod validation schema
 const menuItemSchema = z.object({
@@ -342,23 +343,6 @@ export default function EditItemModal({
             <label className="mb-[6px] block text-[13px] font-medium text-[#333333]">
               Image (Optional)
             </label>
-
-            {/* Existing image */}
-            {/* {existingImage && !imageFile && (
-              <div className="mb-[8px] flex items-center justify-between rounded-[6px] border border-[#E6E2D8] bg-white px-[10px] py-[6px]">
-                <span className="text-[12px] text-[#333333]">
-                  Current image
-                </span>
-                <button
-                  onClick={handleRemoveExistingImage}
-                  className="text-[#7A7A7A] transition hover:text-[#333333]"
-                >
-                  <X size={14} />
-                </button>
-              </div>
-            )} */}
-
-            {/* Upload area */}
             <div
               onDrop={handleDrop}
               onDragOver={handleDragOver}
@@ -406,7 +390,7 @@ export default function EditItemModal({
             {/* Image Preview */}
             {(existingImage || imageFile) && (
               <div className="mb-[8px] relative w-full h-[120px] rounded-[6px] my-2 overflow-hidden border border-[#E6E2D8]">
-                <img
+                {/* <img
                   src={
                     imageFile
                       ? URL.createObjectURL(imageFile) // preview new upload
@@ -414,6 +398,17 @@ export default function EditItemModal({
                   }
                   alt="Menu Item"
                   className="h-full w-full object-cover"
+                /> */}
+                <Image
+                  src={
+                    imageFile
+                      ? URL.createObjectURL(imageFile) // preview new upload
+                      : existingImage // show current image
+                  }
+                  alt={formData.name}
+                  width={150}
+                  height={100}
+                  className="rounded-md"
                 />
                 <button
                   onClick={() => {
