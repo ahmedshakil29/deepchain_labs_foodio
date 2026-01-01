@@ -303,11 +303,13 @@ export default function EditItemModal({
               onChange={(e) => handleInputChange("category", e.target.value)}
               className="h-[38px] w-full rounded-[6px] border border-[#E6E2D8] px-[12px] text-[14px] text-[#333333] outline-none focus:ring-2 focus:ring-[#0B5D1E]"
             >
-              {categories.map((cat) => (
-                <option key={cat.id} value={cat.name}>
-                  {cat.name}
-                </option>
-              ))}
+              {categories
+                .sort((a, b) => a.name.localeCompare(b.name))
+                .map((cat) => (
+                  <option key={cat.id} value={cat.name}>
+                    {cat.name}
+                  </option>
+                ))}
             </select>
 
             {errors.category && (
@@ -342,7 +344,7 @@ export default function EditItemModal({
             </label>
 
             {/* Existing image */}
-            {existingImage && !imageFile && (
+            {/* {existingImage && !imageFile && (
               <div className="mb-[8px] flex items-center justify-between rounded-[6px] border border-[#E6E2D8] bg-white px-[10px] py-[6px]">
                 <span className="text-[12px] text-[#333333]">
                   Current image
@@ -354,7 +356,7 @@ export default function EditItemModal({
                   <X size={14} />
                 </button>
               </div>
-            )}
+            )} */}
 
             {/* Upload area */}
             <div
@@ -403,7 +405,7 @@ export default function EditItemModal({
             )} */}
             {/* Image Preview */}
             {(existingImage || imageFile) && (
-              <div className="mb-[8px] relative w-full h-[120px] rounded-[6px] overflow-hidden border border-[#E6E2D8]">
+              <div className="mb-[8px] relative w-full h-[120px] rounded-[6px] my-2 overflow-hidden border border-[#E6E2D8]">
                 <img
                   src={
                     imageFile
