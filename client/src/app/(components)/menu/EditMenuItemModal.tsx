@@ -386,7 +386,7 @@ export default function EditItemModal({
               </p>
             )}
 
-            {imageFile && (
+            {/* {imageFile && (
               <div className="mt-[8px] flex items-center justify-between rounded-[6px] border border-[#E6E2D8] bg-white px-[10px] py-[6px]">
                 <span className="text-[12px] text-[#333333]">
                   {imageFile.name.length > 25
@@ -398,6 +398,29 @@ export default function EditItemModal({
                   className="text-[#7A7A7A] transition hover:text-[#333333]"
                 >
                   <X size={14} />
+                </button>
+              </div>
+            )} */}
+            {/* Image Preview */}
+            {(existingImage || imageFile) && (
+              <div className="mb-[8px] relative w-full h-[120px] rounded-[6px] overflow-hidden border border-[#E6E2D8]">
+                <img
+                  src={
+                    imageFile
+                      ? URL.createObjectURL(imageFile) // preview new upload
+                      : existingImage // show current image
+                  }
+                  alt="Menu Item"
+                  className="h-full w-full object-cover"
+                />
+                <button
+                  onClick={() => {
+                    handleRemoveFile();
+                    handleRemoveExistingImage();
+                  }}
+                  className="absolute top-[4px] right-[4px] rounded bg-black/30 p-1 text-white hover:bg-black/50"
+                >
+                  <X size={16} />
                 </button>
               </div>
             )}
