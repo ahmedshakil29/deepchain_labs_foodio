@@ -50,12 +50,16 @@ type MenuItem = {
   availableForOrder: boolean;
   rawPrice?: number;
 };
-
+type Category = {
+  id: number;
+  name: string;
+};
 type EditItemModalProps = {
   isOpen: boolean;
   onClose: () => void;
   onSuccess?: () => void;
   item: MenuItem | null;
+  categories: Category[]; // ✅ added
 };
 
 export default function EditItemModal({
@@ -63,6 +67,7 @@ export default function EditItemModal({
   onClose,
   onSuccess,
   item,
+  categories,
 }: EditItemModalProps) {
   const [formData, setFormData] = useState({
     name: "",
@@ -89,6 +94,11 @@ export default function EditItemModal({
       });
       setExistingImage(item.image || "");
       setImageFile(null);
+    }
+  }, [item]);
+  useEffect(() => {
+    if (item) {
+      console.log("🟢 Current item:", item);
     }
   }, [item]);
 
@@ -221,7 +231,7 @@ export default function EditItemModal({
       <div className="relative w-full max-w-[480px] max-h-[90vh] overflow-y-auto rounded-[12px] bg-white p-[32px] shadow-2xl">
         {/* Header */}
         <div className="mb-[20px] flex items-center justify-between sticky top-0 bg-white z-10 pb-4">
-          <h2 className="text-[20px] font-semibold text-[#1A1A1A]">
+          <h2 className="text-[20px] font-semibold text-[#1A3C34]">
             Edit Item
           </h2>
           <button
@@ -277,7 +287,7 @@ export default function EditItemModal({
             <label className="mb-[6px] block text-[13px] font-medium text-[#333333]">
               Category
             </label>
-            <select
+            {/* <select
               value={formData.category}
               onChange={(e) => handleInputChange("category", e.target.value)}
               className="h-[38px] w-full rounded-[6px] border border-[#E6E2D8] px-[12px] text-[14px] text-[#333333] outline-none focus:ring-2 focus:ring-[#0B5D1E]"
@@ -287,7 +297,19 @@ export default function EditItemModal({
               <option value="Desserts">Desserts</option>
               <option value="Beverages">Beverages</option>
               <option value="Appetizers">Appetizers</option>
+            </select> */}
+            <select
+              value={formData.category}
+              onChange={(e) => handleInputChange("category", e.target.value)}
+              className="h-[38px] w-full rounded-[6px] border border-[#E6E2D8] px-[12px] text-[14px] text-[#333333] outline-none focus:ring-2 focus:ring-[#0B5D1E]"
+            >
+              {categories.map((cat) => (
+                <option key={cat.id} value={cat.name}>
+                  {cat.name}
+                </option>
+              ))}
             </select>
+
             {errors.category && (
               <p className="mt-[4px] text-[11px] text-red-500">
                 {errors.category}

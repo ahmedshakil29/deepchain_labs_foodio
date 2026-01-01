@@ -328,6 +328,7 @@ export default function MenuItemsPage() {
         <EditItemModal
           isOpen={isEditModalOpen}
           item={selectedItem} // pass full item
+          categories={categories}
           onClose={() => {
             setIsEditModalOpen(false);
             setSelectedItem(null);
