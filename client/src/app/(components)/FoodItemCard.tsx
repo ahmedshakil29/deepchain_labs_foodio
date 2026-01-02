@@ -4,6 +4,7 @@ import Image from "next/image";
 import Button from "@/app/(components)/commons/Button";
 import { Plus } from "lucide-react";
 import { FoodItemCardProps } from "@/app/foodmenu/page";
+import FigmaButton from "./FigmaButton"; // Adjust path
 // import Image from "next/image";
 export default function FoodItemCard({
   imageSrc,
@@ -55,7 +56,7 @@ export default function FoodItemCard({
 
       {/* Add to Order Button */}
       <div className="absolute bottom-5 left-3/4 transform -translate-x-1/2 translate-y-1/2">
-        <Button
+        {/* <Button
           text="Add to order"
           icon={Plus}
           iconPosition="right"
@@ -66,7 +67,8 @@ export default function FoodItemCard({
           textColor="#FFFFFF"
           onClick={onAddToOrder}
           className="font-semibold"
-        />
+        /> */}
+        <FigmaButton onClick={onAddToOrder} />
       </div>
     </div>
   );

@@ -291,6 +291,7 @@
 
 import React from "react";
 import Button from "./Button";
+import { ButtonTwo } from "./ButtonTwo";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -332,7 +333,7 @@ export default function Hero() {
           </p>
 
           <div className="flex items-center gap-4 justify-center md:justify-start flex-col md:flex-row">
-            <Button
+            {/* <Button
               text="Order Now"
               icon={ArrowRight}
               iconPosition="right"
@@ -342,8 +343,17 @@ export default function Hero() {
               textColor="#FFFFFF"
               onClick={handleOrderNow}
               className="font-semibold text-[16px]"
-            />
-            <Button
+            /> */}
+            <ButtonTwo
+              size="lg"
+              className="rounded-tr-none shadow-2xl shadow-primary"
+            >
+              Order Now <ArrowRight />{" "}
+            </ButtonTwo>
+            <ButtonTwo size="lg" variant="outline" className="rounded-tl-none">
+              View Menu
+            </ButtonTwo>
+            {/* <Button
               text="View Menu"
               width="w-full md:w-[160px]"
               height="h-[52px]"
@@ -351,7 +361,7 @@ export default function Hero() {
               textColor="#1A3C34"
               onClick={handleViewMenu}
               className="font-semibold text-[16px] border-2 border-[#1A3C34]"
-            />
+            /> */}
           </div>
         </div>
 

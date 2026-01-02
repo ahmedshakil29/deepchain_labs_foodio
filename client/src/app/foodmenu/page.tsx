@@ -180,7 +180,7 @@ export default function FoodMenu() {
         )}
         {/* Menu Grid */}
         {!loading && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-24 mt-20">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4  gap-x-12 gap-y-24 mt-20">
             {filteredItems.length === 0 ? (
               <div className="col-span-full text-center py-20">
                 <p className="text-[#666666] text-lg">
