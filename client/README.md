@@ -53,6 +53,7 @@ url: http://localhost:3000
 environment_variables:
 
 NEXT_PUBLIC_API_URL=http://localhost:3001
+
 NEXT_PUBLIC_APP_URL=http://localhost:3000
 
 NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME = YOUR_CLOUDINARY_CLOUD_NAME
