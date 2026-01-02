@@ -29,7 +29,7 @@ const Header = ({ className }: HeaderProps) => {
     <header
       className={twMerge(
         clsx(
-          "w-full h-[64px] px-8 flex items-center justify-between bg-white border-b-2 border-[#E8E4DB]",
+          "w-full h-[64px] px-8 flex items-center justify-between bg-white  border-[#E8E4DB]",
           className
         )
       )}
@@ -50,9 +50,9 @@ const Header = ({ className }: HeaderProps) => {
             onClick={() => handleNavigation(link.route)}
             className={twMerge(
               clsx(
-                "px-4 py-2 font-medium text-[14px] leading-[20px] transition-all duration-200 hover:text-[#1A3C34]",
+                "px-4 py-2 font-medium text-[14px] leading-[20px] transition-all duration-200 hover:text-[#1A3C34] hover:font-semibold",
                 pathname === link.route
-                  ? "text-[#1A3C34] font-semibold"
+                  ? "text-[#1A3C34] font-semibold border border-primary rounded-full py-1.5 px-3 bg-[#FEF7EA]"
                   : "text-[#666666]"
               )
             )}

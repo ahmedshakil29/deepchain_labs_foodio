@@ -17,7 +17,7 @@ const Logo = () => {
         className="text-[#1A3C34] font-[CormorantGaramond] font-semibold text-[26px] leading-[100%] tracking-[-5%]"
         style={{ lineHeight: "100%" }}
       >
-        Foodio
+        Foodio.
       </span>
     </div>
   );
