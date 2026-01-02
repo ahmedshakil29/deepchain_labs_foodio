@@ -4,7 +4,7 @@ import Image from "next/image";
 import Button from "@/app/(components)/commons/Button";
 import { Plus } from "lucide-react";
 import { FoodItemCardProps } from "@/app/foodmenu/page";
-
+// import Image from "next/image";
 export default function FoodItemCard({
   imageSrc,
   imageAlt,
@@ -33,8 +33,9 @@ export default function FoodItemCard({
         <Image
           src={imageSrc}
           alt={imageAlt}
-          fill
-          className="object-cover rounded-full"
+          width={209}
+          height={206}
+          className="object-contain rounded-full "
           sizes="222px"
         />
       </div>
