@@ -1,3 +1,4 @@
+// src/services/api.ts
 import axios from "axios";
 
 const api = axios.create({
@@ -14,6 +15,29 @@ api.interceptors.request.use((config) => {
 
 export default api;
 
+// src/services/api.ts
+
+// import axios from "axios";
+// import { getAuthConfig } from "@/utils/auth";
+
+// const api = axios.create({
+//   baseURL: "http://localhost:3001",
+// });
+
+// api.interceptors.request.use((config) => {
+//   const authConfig = getAuthConfig();
+//   config.headers = {
+//     ...config.headers,
+//     ...authConfig.headers,
+//   };
+//   return config;
+// });
+
+// export default api;
+// ✔ Removes all manual token handling
+// ✔ One place to change baseURL later
+
+//88888888888
 // import axios from "axios";
 // import { getToken, clearToken } from "@/utils/token";
 
