@@ -42,7 +42,7 @@ steps: - Install dependencies using npm install - Create environment file .env.l
     cd client
     ```
 
-3.  Install the dependencies using pnpm:
+3.  Install the dependencies using npm:
     ```bash
     npm install
     ```
