@@ -10,7 +10,7 @@ import Button from "@/app/(components)/commons/Button";
 // import { useAuth } from "@/hooks/useAuth";
 // import { ChefHat, UtensilsCrossed, Cake } from "lucide-react";
 import MenuSection from "@/app/(components)/menu/MenuSection";
-
+import Image from "next/image";
 // type MenuItem = {
 //   id: number;
 //   name: string;
@@ -117,6 +117,12 @@ export default function HomePage() {
                 zIndex: 2,
               }}
             >
+              {/* <Image
+                src="/banner-bg.png"
+                alt="Banner background frame"
+                width={608}
+                height={565}
+              /> */}
               <img
                 src="/assets/dashboard.png"
                 alt="Delicious pasta dish"
